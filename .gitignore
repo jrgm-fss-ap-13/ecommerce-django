@@ -18,7 +18,7 @@ __pycache__/
 *.env
 
 # Archivos de bases de datos locales
-db.sqlite3
+#db.sqlite3
 
 # Archivos de logs
 *.log

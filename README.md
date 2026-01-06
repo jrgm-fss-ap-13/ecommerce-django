@@ -2,7 +2,7 @@
 
 ## 📖 Descripción del Proyecto
 
-**MyNakama** es una plataforma de comercio electrónico desarrollada en Django para la venta de productos relacionados con anime, específicamente mangas y figuras coleccionables. El proyecto ofrece una experiencia de compra completa con sistema de carrito de compras, gestión de usuarios, panel de administración y filtrado de productos por categorías y animes.
+**MyNakama** es una plataforma de comercio electrónico desarrollada en Django para la venta de productos relacionados con anime, específicamente mangas y figuras coleccionables. El proyecto ofrece una experiencia de compra completa con sistema de carrito de compras, gestión de usuarios, panel de administración y filtrado de productos por categorías y animes.Este proyecto fue creado para la asignatura de desarrollo web.
 
 ## ✨ Características Principales
 
