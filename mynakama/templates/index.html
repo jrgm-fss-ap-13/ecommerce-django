@@ -1,0 +1,188 @@
+{% extends 'layouts/navthem.html' %}
+
+{% block content%}
+
+<div class="container-custom">
+
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="4000">
+        <a href="#">
+          <img src="https://kurogami.com/min/img/anuncios/ichiban-kuji-banner-kurogami_2.webp" class="d-block w-100"
+            alt="..."></a>
+      </div>
+      <div class="carousel-item" data-bs-interval=4000">
+        <a href="#">
+          <img src="https://kurogami.com/min/img/anuncios/ichiban-kuji-banner-kurogami_2.webp" class="d-block w-100"
+            alt="..."></a>
+      </div>
+      <div class="carousel-item" data-bs-interval="4000">
+        <a href="#">
+          <img src="https://kurogami.com/min/img/anuncios/ichiban-kuji-banner-kurogami_2.webp" class="d-block w-100"
+            alt="..."></a>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true" style="margin-right: 15px;"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="py-2">
+    <h2>{{anime_destacados}}</h2>
+  </div>
+  <div id="myCarousel5" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for producto in productos_destacados %}
+      {% if forloop.counter0|divisibleby:6 %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <div class="row justify-content-center">
+          {% endif %}
+          <div class="col-xs-12 col-md-4 col-xl-2">
+            <div class="card py-2">
+              <a href="{% url 'info-producto' producto.slug %}">
+                <img src="{{ producto.image1 }}" class="card-img-top d-flex align-items-center" alt="...">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title truncate-text title-text">{{ producto.nombre_producto }}</h5>
+                <h6 class="card-text price-text">${{ producto.precio }}</h6>
+              </div>
+              <div class="d-flex justify-content-center">
+                {% if producto.stock == 0 %}
+                <div class="col-12 text-center">
+                  <h6>Producto sin stock</h6>
+                </div>
+                {% else %} 
+               <form action="{% url 'agregar_al_carrito' producto.id_producto %}">
+                  <button class="btn btn-primary">Agregar</button>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:6 or forloop.last %}
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel5" data-bs-slide="prev"
+      style="width: 100px;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel5" data-bs-slide="next"
+      style="width: 100px;">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+
+  <div class="py-2">
+    <h2>{{nombre_anime_kimetsu}}</h2>
+  </div>
+  <div id="myCarousel3" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for producto in productos_kimetsu %}
+      {% if forloop.counter0|divisibleby:6 %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <div class="row justify-content-center">
+          {% endif %}
+          <div class="col-xs-12 col-md-4 col-xl-2">
+            <div class="card py-2">
+              <a href="{% url 'info-producto' producto.slug %}">
+                <img src="{{ producto.image1 }}" class="card-img-top d-flex align-items-center" alt="...">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title truncate-text title-text">{{ producto.nombre_producto }}</h5>
+                <h6 class="card-text price-text">${{ producto.precio }}</h6>
+              </div>
+              <div class="d-flex justify-content-center">
+                {% if producto.stock == 0 %}
+                <div class="col-12 text-center">
+                  <h6>Producto sin stock</h6>
+                </div>
+                {% else %}
+                <form action="{% url 'agregar_al_carrito' producto.id_producto %}">
+                  <button class="btn btn-primary">Agregar</button>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:6 or forloop.last %}
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel3" data-bs-slide="prev"
+      style="width: 100px;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel3" data-bs-slide="next"
+      style="width: 100px;">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+
+  <div class="py-2">
+    <h2>{{anime_nombre}}</h2>
+  </div>
+  <div id="myCarousel4" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for producto in productos_random %}
+      {% if forloop.counter0|divisibleby:6 %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <div class="row justify-content-center">
+          {% endif %}
+          <div class="col-xs-12 col-md-4 col-xl-2">
+            <div class="card py-2">
+              <a href="{% url 'info-producto' producto.slug %}">
+                <img src="{{ producto.image1 }}" class="card-img-top d-flex align-items-center" alt="...">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title truncate-text title-text">{{ producto.nombre_producto }}</h5>
+                <h6 class="card-text price-text">${{ producto.precio }}</h6>
+              </div>
+              <div class="d-flex justify-content-center">
+                {% if producto.stock == 0 %}
+                <div class="col-12 text-center">
+                  <h6>Producto sin stock</h6>
+                </div>
+                {% else %}
+                <form action="{% url 'agregar_al_carrito' producto.id_producto %}">
+                  <button class="btn btn-primary">Agregar</button>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:6 or forloop.last %}
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel4" data-bs-slide="prev"
+      style="width: 100px;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel4" data-bs-slide="next"
+      style="width: 100px;">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+
+
+</div>
+
+{%endblock%}

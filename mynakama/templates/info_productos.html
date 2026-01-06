@@ -1,0 +1,195 @@
+{% extends 'layouts/navthem.html' %}
+{% load static %}
+
+{% block content%}
+
+<div class="container">
+  {% for producto in productos %}
+  <div class="row py-2">
+    {% if producto.figura %}
+    <div class="col-xl-8 col-sm-12 my-2">
+      <section class="slider">
+        <div class="slider__flex">
+          <div class="slider__col">
+            <div class="slider__prev"><i class="fa-sharp fa-solid fa-arrow-up"
+                style="color: #7b63b1 ; font-size: 30px;"></i></div> <!-- Button to switch to the previous slide -->
+            <div class="slider__thumbs">
+              <div class="swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="slider__image"><img src="{{producto.image1}}" alt="" /></div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="slider__image"><img src="{{producto.image2}}" alt="" /></div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="slider__image"><img src="{{producto.image3}}" alt="" /></div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="slider__image"><img src="{{producto.image4}}" alt="" /></div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="slider__image"><img src="{{producto.image1}}" alt="" /></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slider__next"><i class="fa-solid fa-arrow-down" style="color: #7b63b1; font-size: 30px;"></i>
+            </div><!-- Button to switch to the next slide -->
+          </div>
+          <div class="slider__images">
+            <div class="swiper-container">
+              <!-- Slider with images -->
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="slider__image"><img src="{{producto.image1}}" alt="" /></div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="slider__image"><img src="{{producto.image2}}" alt="" /></div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="slider__image"><img src="{{producto.image3}}" alt="" /></div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="slider__image"><img src="{{producto.image4}}" alt="" /></div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="slider__image"><img src="{{producto.image1}}" alt="" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    {% endif %}
+    {% if producto.manga %}
+    <div class="col-xl-8 col-sm-12 my-2">
+      <div class="d-flex justify-content-center py-4">
+        <img src="{{producto.image1}}" alt="">
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="col-xl-4 col-sm-12 my-2" style="background-color: white; border-radius: 20px;">
+      <div class="row py-3 justify-content-center">
+        <div class="row py-3">
+          <h4 class="px-4"><strong>{{ producto.nombre_producto }}</strong></h4>
+        </div>
+        <div class="row py-1">
+          <h2 class="px-4">${{ producto.precio }}</h2>
+        </div>
+        <div class="row">
+          {% if producto.stock == 0 %}
+          <div class="col-12">
+            <h3>Producto sin stock</h3>
+          </div>
+          {% else %}
+          <div class="col-3 d-flex justify-content-center">
+            <form action="{% url 'agregar_al_carrito' producto.id_producto %}">
+              <button class="btn btn-primary">+</button>
+            </form>
+          </div>
+            {% for articulo in articulos %}
+          <div class="col-1 d-flex align-items-center">{{ articulo.cantidad }}</div>
+            {% endfor %}
+          <div class="col-3 d-flex justify-content-center">
+            <form action="{% url 'restar_producto' producto.id_producto %}">
+              <button class="btn btn-primary">-</button>
+            </form>
+          </div>
+          <div class="col-5 d-flex justify-content-center">
+            <form action="{% url 'agregar_al_carrito' producto.id_producto %}">
+              <button class="btn btn-primary">Comprar</button>
+            </form>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="accordion accordion-flush py-1" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              <strong>Detalles de Producto</strong>
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <div class="col-12">
+                <p><strong>Anime:</strong> {{ producto.anime_id_anime.nombre }}</p>
+                {% if producto.manga %}
+                <div>
+                  <p><strong>Editorial:</strong> {{ producto.manga.editorial }}</p>
+                  <p><strong>Autor:</strong> {{ producto.manga.autor }}</p>
+                  <p><strong>Tomo:</strong> {{ producto.manga.tomo }}</p>
+                </div>
+                {% endif %}
+                {% if producto.figura %}
+                <div>
+                  <p><strong>Material:</strong> {{ producto.figura.material }}</p>
+                  <p><strong>Fabricante:</strong> {{ producto.figura.fabricante }}</p>
+                  <p><strong>Medidas:</strong> {{ producto.figura.medidas }} cm</p>
+                  <p><strong>Personaje:</strong> {{ producto.figura.personaje }}</p>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              <strong>Métodos de pago</strong>
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <div class="row">
+                <img src="{% static 'image/payments.png' %}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row ms-2 py-5" style="background-color: rgb(255, 255, 255); border-radius: 20px;">
+    <div class="col-lg-12 col-md-12 col-sm-12 py-3">
+      <ul class="nav nav-tabs justify-content-around">
+        <li class="nav-item">
+          <a class="nav-link active" id="tab1" data-bs-toggle="tab" href="#contenido1">Descripción</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="tab2" data-bs-toggle="tab" href="#contenido2">Fecha y reserva</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="tab3" data-bs-toggle="tab" href="#contenido3">Comentarios</a>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <hr style="background-color: #06040c;">
+      <div class="col-lg-12 col-md-12">
+        <div class="tab-content" id="miContenedor">
+          <div class="tab-pane fade show active" id="contenido1">
+            <p>{{producto.descripcion}}</p>
+          </div>
+          <div class="tab-pane fade" id="contenido2">
+            <p>Sin información</p>
+          </div>
+          <div class="tab-pane fade" id="contenido3">
+            <p>Sin Comentarios</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+{% endfor %}
+{%endblock%}

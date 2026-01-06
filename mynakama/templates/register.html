@@ -1,0 +1,44 @@
+{% extends 'layouts/navthem.html' %}
+
+
+{% block content%}
+
+<div class="login-reg-body imag-fondo">
+
+    <div class="d-flex justify-content-center py-5">
+        <div class="box-user">
+            <div class="form-user">
+                <div class="text-center">
+                <h2>Crear Usuario</h2>
+                </div>
+                <div class="inputBox-user">
+                    <form method="post" action="{% url 'register' %}">
+                        {% csrf_token %}
+                        {% for field in form %}
+                          <div class="form-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.errors %}
+                              <div class="error-message">
+                                {% for error in field.errors %}
+                                  {{ error }}
+                                {% endfor %}
+                              </div>
+                            {% endif %}
+                          </div>
+                        {% endfor %}
+                        <div class="d-flex justify-content-center py-2">
+                        <button class="btn colorboton" type="submit">Register</button>
+                        </div>
+                      </form>
+                    <div class="py-2">
+                    <a href="{% url 'login' %} ">
+                        <button class="btn colorboton">Volver</button>
+                    </a> <!-- Agrega el enlace para volver -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

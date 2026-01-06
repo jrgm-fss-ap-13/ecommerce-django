@@ -1,0 +1,120 @@
+
+/* Estilos para el fondo oscuro detrás del modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  /* Estilos para el contenedor del modal */
+  .modal__container {
+    position: relative;
+    margin: 5% auto;
+    padding: 20px;
+    width: 60%;
+    max-height: 120%;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  /* Estilos para el título "Crear nueva cuenta" */
+  .register-heading {
+    margin-top: 0;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Estilos para el formulario de registro */
+  .register-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Estilos para los campos de entrada de texto */
+  .form-group {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  /* Estilos para los botones */
+  .btnRegister {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #7b63b1;
+    border: 1px solid #7b63b1;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  }
+  
+  .btnRegister:hover {
+    background-color: #a083e5;
+    border-color: #ddd6ef;
+  }
+  
+  /* Estilos para los mensajes de error */
+  #error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Estilos para el checkbox "Acepto los términos y condiciones" */
+  #terminos {
+    display: inline;
+    margin-left: 10px;
+  }
+  
+  /* Estilos para el botón de cerrar el modal */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    opacity: 1;
+  }
+
+  .modal__close{
+    position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  padding: 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  }

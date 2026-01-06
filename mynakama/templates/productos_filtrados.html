@@ -1,0 +1,71 @@
+{% extends 'layouts/navthem.html' %}
+
+{% block content%}
+
+<div class="container-custom">
+
+  <h2 class="mx-2 py-3">{{ subclase|title }}</h2>
+
+  <div class="">
+    <form method="GET" class="d-flex align-items-center">
+      <div>
+        <select name="orderby">
+          <option value="">Ordenar por</option>
+          <option value="ascendente">Ascendente</option>
+          <option value="descendente">Descendente</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary mx-2">Filtrar</button>
+      </div>
+    </form>
+  </div>
+
+  {% if anime_slug %}
+  <div class="d-flex justify-content-center">
+    <h2 class="py-2">Anime: {{ nombre_anime }}</h2>
+  </div>
+  {% endif %}
+
+  {% if productos %}
+
+  <div class="row justify">
+    {% for producto in productos %}
+    <div class="col-xs-12 col-md-4 col-xl-2 py-3">
+      <div class="card py-2">
+        <a href="{% url 'info-producto' producto.slug %}">
+          <img src="{{ producto.image1 }}" class="card-img-top d-flex align-items-center" alt="...">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title text-truncate">{{ producto.nombre_producto }}</h5>
+          <h6 class="card-text price-text">${{ producto.precio }}</h6>
+        </div>
+        <div class="d-flex justify-content-center">
+          {% if producto.stock == 0 %}
+          <div class="col-12 text-center">
+            <h6>Producto sin stock</h6>
+          </div>
+          {% else %}
+          <form action="{% url 'agregar_al_carrito' producto.id_producto %}">
+            <button class="btn btn-primary">Agregar</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+  {% else %}
+
+
+  <div class="d-flex justify-content-center">
+    <h3>Productos no encontrados </h3>
+  </div>
+  <div class="d-flex justify-content-center">
+    <img src="https://pm1.aminoapps.com/6219/76f0aadc5535e3c49e6a67a1aaf58692bd4ab24f_hq.jpg" alt="">
+  </div>
+
+  {% endif %}
+</div>
+{%endblock%}

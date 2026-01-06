@@ -1,0 +1,87 @@
+{% extends 'layouts/navthem.html' %}
+
+{% block content%}
+
+<div class="container-custom">
+
+    <div class="row align-items-center">
+        <div class="col-6 py-3">
+            <h1 class="mt-4">Carrito de Compras</h1>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="col-6 d-flex justify-content-end">
+        <form action="{% url 'vaciar_carrito' %}">
+            <button class="btn btn-primary">Vaciar Carrito</button>
+        </form>
+        </div>
+        {% else %}
+        <div>
+        </div>
+        {% endif %}
+
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total por Artículo</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for articulo in articulos %}
+            <tr>
+                <td><img src="{{ articulo.producto_id_producto.image1 }}"
+                        alt="{{ articulo.producto_id_producto.nombre_producto }}" class="img-thumbnail"
+                        style="width: 100px;"></td>
+                <td>{{ articulo.producto_id_producto.nombre_producto }}</td>
+                <td>${{ articulo.producto_id_producto.precio }}</td>
+                <td>
+                    <div class="col-8 d-flex align-items-center justify-content-evenly">
+                    <form action="{% url 'agregar_al_carrito' articulo.producto_id_producto.id_producto %}">
+                        <button class="btn btn-primary">+</button>
+                    </form>
+                    <span>       
+                    {{ articulo.cantidad }}
+                    </span>   
+                    <form action="{% url 'restar_producto' articulo.producto_id_producto.id_producto %}">
+                        <button class="btn btn-primary">-</button>
+                    </form> 
+                    </div>
+                </td>
+                <td>${{articulo.get_total}}</td>
+                <td ><a href="{% url 'eliminar_producto' articulo.producto_id_producto.id_producto %}">
+                    <i class="btn btn-secondary delete fa-solid fa-trash"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col-sm-12 rounded text-center" style="background-color: #BDBDBD; margin-top: 35px;"
+        id="Articuloscarrito">🛒Hay <strong>{{ orden.get_cart_items }}</strong> en tu carrito de compra</div>
+    <div class="col-sm-12 rounded text-end fs-4" style="background-color: #cecece; margin-right: 5px;" id="Valortotal">
+        <strong>Total Compra: ${{ orden.get_cart_total }}</strong> </div>
+
+
+    <form class="d-flex justify-content-end py-2" action="{% url 'finalizar_compra' %}" method="post">
+        {% csrf_token %}
+        <div class="py-2">
+        {% if user.is_authenticated %}
+        <button type="submit" class="btn btn-primary">Finalizar compra</button>
+        {% else %}
+        <div>
+        <br>
+        <br>
+        </div>
+        {% endif %}
+        </div>
+    </form>
+
+    <div style="height: 146px;">
+
+    </div>
+
+</div>
+{%endblock%}

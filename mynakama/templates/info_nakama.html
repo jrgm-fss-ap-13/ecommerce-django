@@ -1,0 +1,57 @@
+{% extends 'layouts/navthem.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class ="container-custom">  
+
+  {% for e in empresa %}
+
+  <div class="d-flex justify-content-center">
+
+    <img  src=" {{  e.image1  }} " alt="">
+
+  </div>
+
+  <div class="container-custom">
+  <div class="text-center py-3">
+
+    <p> {{  e.text1  }}  </p>
+    <br>
+    <p> {{  e.text2  }}  </p>
+    <br>
+    <p> {{  e.text3  }}  </p>
+    <br>
+    <p> {{  e.text4  }}  </p>
+
+  </div>
+</div>
+
+<hr>
+
+  <div class="container-custom">
+    <div class="col-6">
+      <div>
+        <h6>{{  e.nombre_tienda  }} </h6>
+        <p>{{  e.direccion  }}</p>
+        <p>{{  e.telefono  }} </p>
+      </div>
+      
+    </div>
+          
+    <div class="col-6 pb-4">
+      <img class="img-fluid" src="{{  e.image2  }}" alt="">
+    </div>
+
+  </div>
+
+  {% endfor %}
+
+
+</div>
+    
+
+{% endblock %}
+
+

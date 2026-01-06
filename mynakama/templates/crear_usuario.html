@@ -1,0 +1,125 @@
+{% extends 'layouts/navthem.html' %}
+
+{% block content%}
+
+<div class="class="container-custom"">
+  <!-- Container en donde se gestiona el inicio de sesion. -->
+  <div>
+    <section>
+      <div class="container-costum3 py-2 inSeccion" style="margin-top: 10px; border: 1px solid; border-radius: 15px;" >
+        <h1 class="text-center">Inicio de sesión</h1>
+        <form class="Inicio_sesion" >
+          <div class="mb-2">
+            <label for="email" class="cajaEmail"class="form-label">Correo electrónico</label>
+            <input type="email" class="correo" placeholder="Escriba su correo" class="form-control" id="correo" name="correo" required>
+          </div>
+          <div class="mb-2">
+            <label for="password" class="cajaContrasena" class="form-label">Contraseña</label>
+            <input type="password" class="inputContra"placeholder="Escriba su contrasena"class="form-control" id="contrasena" name="contrasena" required>
+          </div>
+          <div class="mb-2">
+            <button type="submit" class="inicioSeccion"value="Entrar"class="btn btn-primary">Iniciar sesión</button>
+          </div>
+        </form>
+        <a href="#" class="hero__cta">Crear Cuenta</a>
+      </div>
+  
+      <section class="modal popup">
+        <div class="modal__container py-2" style="max-height: 130%;">
+          <button class="modal__close">&times;</button>
+            <div class="row">
+                <div class="register-right">
+                    <div class="fondo-login">
+                        <div class="fondo-blanco">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                    aria-labelledby="home-tab">
+                                    <form class="row register-form" action="Index.html">
+                                        <div>
+                                            <h2 class="register-heading">Crear nueva cuenta</h2>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Nombre *"
+                                                    value="" required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Apellido *"
+                                                    value="" required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="Contraseña *"
+                                                    value="" required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control"
+                                                    placeholder="Confirmar Contraseña *" value="" required />
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="maxl">
+                                                    <label class="radio inline">
+                                                        <input type="radio" name="gender" value="male" checked>
+                                                        <span class="gen"> Masculino </span>
+                                                    </label>
+                                                    <label class="radio inline">
+                                                        <input type="radio" name="gender" value="female">
+                                                        <span class="gen">Femenino </span>
+                                                    </label>
+                                                    <label class="radio inline">
+                                                        <input type="radio" name="gender" value="no-binario">
+                                                        <span class="gen">No Binario </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" placeholder="Tu e-mail *"
+                                                    value="" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" minlength="10" maxlength="10" name="txtEmpPhone"
+                                                    class="form-control" placeholder="Tu teléfono *" value="" />
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option class="hidden" selected disabled>Por favor seleccione una
+                                                        pregunta de seguridad
+                                                    </option>
+                                                    <option>¿Cuál es tu color favorito?</option>
+                                                    <option>¿Cuál es tu hobbie?</option>
+                                                    <option>¿Cuál es el nombre de tu mascota?</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Ingresa tu respuesta *" value="" />
+                                            </div>
+                                            <div class="form-group fechita">
+                                                <label>Ingresa tu fecha de nacimiento</label>
+                                                <input type="date" name="date" id="date">
+                                            </div>
+  
+                                            <!--   Check box "Acepto los términos y condiciones"            -->
+                                            <div id="login-form" class="terminitos">
+                                                <!-- Agrega aquí tus campos de inicio de sesión -->
+                                                <label for="terminos">Acepto los términos y condiciones</label>
+                                                <input type="checkbox" id="terminos" name="terminos" style="display:inline;margin-left:10px" required>
+                                                <span id="terminos-error" style="color: red; display: none;">Debes
+                                                    aceptar los términos y condiciones.</span>
+                                            </div>
+                                        <input type="submit" class="btnRegister" value="Registrar" />
+                                        </div><!--END .row .register-form-->
+                                    </form><!--END .tab-pane-->
+                                </div><!--END .tab-content #myTabContent-->
+                            </div><!--END .fondo-blanco-->
+                        </div><!--END .fondo-login-->
+                    </div><!--END .col-md-12 .register-right-->
+                </div><!--END .row-->
+            </div><!--END .container .register-->
+   </section>
+  
+
+  </div>
+
+</div>
+
+{%endblock%}
